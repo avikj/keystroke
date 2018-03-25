@@ -2,11 +2,11 @@ from pynput import keyboard
 import pickle
 import datetime
 from copy import deepcopy
+filename = 'shaurya_profile2.pkl'
 class Profiler:
 	def __init__(self):
 		self.keylog = []
-
-		try: self.word_times =pickle.load( open( "shaurya_profile.pkl", "rb" ) )
+		try: self.word_times =pickle.load( open( filename, "rb" ) )
 		except Exception: self.word_times = {} 
 		self.PRESSED = True
 		self.RELEASED = False
@@ -31,7 +31,7 @@ class Profiler:
 			
 			if keychar is keyboard.Key.esc:  
 				print self.word_times
-				pickle.dump( self.word_times, open( "shaurya_profile.pkl", "wb" ) )
+				pickle.dump( self.word_times, open( filename, "wb" ) )
 				exit()
 		def on_release(key):
 			time = (datetime.datetime.now()-datetime.datetime(1970,1,1)).total_seconds()
